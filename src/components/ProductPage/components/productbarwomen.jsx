@@ -134,7 +134,7 @@ export const ProductbarW = () => {
 
   const loadData = async () => {
     return await axios
-      .get(`http://localhost:8080/data`)
+      .get(`https://lyst-ecommerce.herokuapp.com/data`)
       .then((res) => {
         setData(res.data);
         const filteredData = res.data.filter((obj) => {
