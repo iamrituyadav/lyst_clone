@@ -178,21 +178,6 @@ export const ProductbarM = () => {
               <option value="lowToHigh">Sort by price(low to high)</option>
             </SortButton>
           </Sort>
-          {/* <ItemSort>
-               <Btn>+ Tops</Btn>
-               <Btn>+ Dresses</Btn>
-               <Btn>+ Pants</Btn>
-               <Btn>+ Knitwear</Btn>
-               <Btn>+ Jackets</Btn>
-               <Btn>+ Skirts</Btn>
-               <Btn>+ Jeans</Btn>
-               <Btn>+ Activewear</Btn>
-               <Btn>+ Beachwear</Btn>
-               <Btn>+ Lingerie</Btn>
-               <Btn>+ Shorts</Btn>
-               <Btn>+ Coats</Btn>
-               <Btn>+ Nightwear</Btn>
-             </ItemSort> */}
         </Titlebar>
         <Box>
           {filtered.map((e) => (

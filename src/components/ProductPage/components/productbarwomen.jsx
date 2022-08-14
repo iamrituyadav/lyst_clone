@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BsHeart } from "react-icons/bs";
 import styledComponents from "styled-components";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Container = styledComponents.div`
     width:100%;
@@ -136,6 +136,7 @@ export const ProductbarW = () => {
     return await axios
       .get(`https://lyst-ecommerce.herokuapp.com/data`)
       .then((res) => {
+        console.log(res.data);
         setData(res.data);
         const filteredData = res.data.filter((obj) => {
           return obj.gender === "woman";
@@ -148,9 +149,9 @@ export const ProductbarW = () => {
   const handleSort = (e) => {
     if (e.target.value === "highToLow") {
       console.log(e.target.value);
-      setFiltered([...data].sort((a, b) => b.offprice - a.offprice));
+      setFiltered([...data].sort((a, b) => b.offPrice - a.offPrice));
     } else if (e.target.value === "lowToHigh") {
-      setFiltered([...data].sort((a, b) => a.offprice - b.offprice));
+      setFiltered([...data].sort((a, b) => a.offPrice - b.offPrice));
     } else if (e.target.value === "no") {
       setFiltered(data);
     }
@@ -167,28 +168,15 @@ export const ProductbarW = () => {
               <option value="lowToHigh">Sort by price(low to high)</option>
             </SortButton>
           </Sort>
-          {/* <ItemSort>
-               <Btn>+ Tops</Btn>
-               <Btn>+ Dresses</Btn>
-               <Btn>+ Pants</Btn>
-               <Btn>+ Knitwear</Btn>
-               <Btn>+ Jackets</Btn>
-               <Btn>+ Skirts</Btn>
-               <Btn>+ Jeans</Btn>
-               <Btn>+ Activewear</Btn>
-               <Btn>+ Beachwear</Btn>
-               <Btn>+ Lingerie</Btn>
-               <Btn>+ Shorts</Btn>
-               <Btn>+ Coats</Btn>
-               <Btn>+ Nightwear</Btn>
-             </ItemSort> */}
         </Titlebar>
         <Box>
           {filtered.map((e) => (
             <ProductBox key={e.id}>
-              <ImageDiv>
-                <Image src={e.image}></Image>
-              </ImageDiv>
+              <Link to={`/product/${e.id}`}>
+                <ImageDiv>
+                  <Image src={e.Image}></Image>
+                </ImageDiv>
+              </Link>
 
               <ProductInfo>
                 <Icondiv>
@@ -200,7 +188,7 @@ export const ProductbarW = () => {
                 </InfoDiv>
                 <Pricediv>
                   <Offprice>{e.price} </Offprice>
-                  <Proprice>${e.offprice}</Proprice>
+                  <Proprice>${e.offPrice}</Proprice>
                   <Offer>({e.off})</Offer>
                 </Pricediv>
               </ProductInfo>

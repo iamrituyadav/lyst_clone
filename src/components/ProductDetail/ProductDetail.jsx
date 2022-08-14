@@ -17,9 +17,15 @@ export default function ProductDetail() {
   const [size, setSize] = useState();
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/data/${id}`).then((res) => {
-      setData(res.data);
-    });
+    axios
+      .get(`https://lyst-ecommerce.herokuapp.com/data/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setData(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, []);
 
   const dispatch = useDispatch();
@@ -34,7 +40,7 @@ export default function ProductDetail() {
   };
 
   return (
-    <Main >
+    <Main>
       {/* <Link to="/cart">
         <button>Cart</button>
       </Link> */}
